@@ -1,0 +1,285 @@
+{
+	"name": "pipeline2",
+	"properties": {
+		"activities": [
+			{
+				"name": "snet2blob",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "FileServerReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*.zip",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "InvoiceID",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 1
+								}
+							},
+							{
+								"source": {
+									"name": "PayerAccountId",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 2
+								}
+							},
+							{
+								"source": {
+									"name": "LinkedAccountId",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 3
+								}
+							},
+							{
+								"source": {
+									"name": "RecordType",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 4
+								}
+							},
+							{
+								"source": {
+									"name": "RecordId",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 5
+								}
+							},
+							{
+								"source": {
+									"name": "ProductName",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 6
+								}
+							},
+							{
+								"source": {
+									"name": "RateId",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 7
+								}
+							},
+							{
+								"source": {
+									"name": "SubscriptionId",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 8
+								}
+							},
+							{
+								"source": {
+									"name": "PricingPlanId",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 9
+								}
+							},
+							{
+								"source": {
+									"name": "UsageType",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 10
+								}
+							},
+							{
+								"source": {
+									"name": "Operation",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 11
+								}
+							},
+							{
+								"source": {
+									"name": "AvailabilityZone",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 12
+								}
+							},
+							{
+								"source": {
+									"name": "ReservedInstance",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 13
+								}
+							},
+							{
+								"source": {
+									"name": "ItemDescription",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 14
+								}
+							},
+							{
+								"source": {
+									"name": "UsageStartDate",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 15
+								}
+							},
+							{
+								"source": {
+									"name": "UsageEndDate",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 16
+								}
+							},
+							{
+								"source": {
+									"name": "UsageQuantity",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 17
+								}
+							},
+							{
+								"source": {
+									"name": "BlendedRate",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 18
+								}
+							},
+							{
+								"source": {
+									"name": "BlendedCost",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 19
+								}
+							},
+							{
+								"source": {
+									"name": "UnBlendedRate",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 20
+								}
+							},
+							{
+								"source": {
+									"name": "UnBlendedCost",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 21
+								}
+							},
+							{
+								"source": {
+									"name": "ResourceId",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 22
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AWS_ZIP_SNET",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "miura_blob_awsv1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

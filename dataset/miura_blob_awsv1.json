@@ -1,0 +1,32 @@
+{
+	"name": "miura_blob_awsv1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "aws-utcnow().zip",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@formatDateTime(utcnow(),'yyyy/MM/dd')",
+					"type": "Expression"
+				},
+				"container": "awsv1"
+			},
+			"columnDelimiter": ",",
+			"compressionCodec": "ZipDeflate",
+			"compressionLevel": "Fastest",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

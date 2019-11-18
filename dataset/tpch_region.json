@@ -1,0 +1,17 @@
+{
+	"name": "tpch_region",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tpch",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "PostgreSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "public",
+			"table": "region"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

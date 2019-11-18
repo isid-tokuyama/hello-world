@@ -1,0 +1,17 @@
+{
+	"name": "tpch_supplier",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tpch",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "PostgreSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "public",
+			"table": "supplier"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

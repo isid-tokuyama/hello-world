@@ -1,0 +1,524 @@
+{
+	"name": "tcph",
+	"properties": {
+		"activities": [
+			{
+				"name": "custmoerCopy",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "PostgreSqlSource"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "c_custkey",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_custkey",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "c_mktsegment",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_mktsegment",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "c_nationkey",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_nationkey",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "c_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "c_address",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_address",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "c_phone",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_phone",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "c_acctbal",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_acctbal",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "c_comment",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_comment",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "tpch_customer",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "tcph_blob_customer",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "lineitemCp",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "PostgreSqlSource"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "tpch_lineitem",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "tcph_blob_lineitem",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "customerCopy_AzureSqlDb",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "custmoerCopy",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "c_custkey",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_custkey",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "c_mktsegment",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_mktsegment",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "c_nationkey",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_nationkey",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "c_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "c_address",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_address",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "c_phone",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_phone",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "c_acctbal",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_acctbal",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "c_comment",
+									"type": "String"
+								},
+								"sink": {
+									"name": "c_comment",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "tcph_blob_customer",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "tpch_sqldb_customer",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "lineitemCopy_AzureSqlDb",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "lineitemCp",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "l_shipdate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "l_shipdate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "l_orderkey",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "l_orderkey",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "l_discount",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "l_discount",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "l_extendedprice",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "l_extendedprice",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "l_suppkey",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "l_suppkey",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "l_quantity",
+									"type": "String"
+								},
+								"sink": {
+									"name": "l_quantity",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "l_returnflag",
+									"type": "String"
+								},
+								"sink": {
+									"name": "l_returnflag",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "l_partkey",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "l_partkey",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "l_linestatus",
+									"type": "String"
+								},
+								"sink": {
+									"name": "l_linestatus",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "l_tax",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "l_tax",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "l_commitdate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "l_commitdate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "l_receiptdate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "l_receiptdate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "l_shipmode",
+									"type": "String"
+								},
+								"sink": {
+									"name": "l_shipmode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "l_linenumber",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "l_linenumber",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "l_shipinstruct",
+									"type": "String"
+								},
+								"sink": {
+									"name": "l_shipinstruct",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "l_comment",
+									"type": "String"
+								},
+								"sink": {
+									"name": "l_comment",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "tcph_blob_lineitem",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "tpch_sqldb_lineitem",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

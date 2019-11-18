@@ -1,0 +1,7 @@
+{
+	"name": "dev-bdog-2-ir1",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "selfhosted IR description"
+	}
+}

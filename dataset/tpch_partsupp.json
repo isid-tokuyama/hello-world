@@ -1,0 +1,17 @@
+{
+	"name": "tpch_partsupp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tpch",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "PostgreSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "public",
+			"table": "partsupp"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

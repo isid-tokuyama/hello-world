@@ -1,0 +1,18 @@
+{
+	"name": "snet_testcsv1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "\\\\ispace.isid.co.jp\\project05\\開発技術センター\\A.部員\\F.教育\\OJT\\past\\36期\\iida\\MDM\\absolute\\Mobile Devices_CommandHistry.csv\n\nテスト用のCSV",
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "\\\\ispace.isid.co.jp\\project05\\開発技術センター\\A.部員\\F.教育\\OJT\\past\\36期\\iida\\MDM\\absolute\\Mobile Devices_CommandHistry.csv",
+			"userId": "snet\\li2053",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJmYmQ0YTM1MS0xYjM4LTQ3MWQtODdlOC1mZTE4ZjM2N2JmYjciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "dev-bdog-2-ir1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

@@ -1,0 +1,18 @@
+{
+	"name": "snte_fileserver_kaigi",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "\\\\ispace.isid.co.jp\\project05\\開発技術センター\\A.部員\\\n←ここまで\n\nF.教育\\OJT\\past\\36期\\iida\\MDM\\absolute\\Mobile Devices_CommandHistry.csv",
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "\\\\ispace.isid.co.jp\\project05",
+			"userId": "snet\\li2053",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIzZmFjNTAzNi0zMmY4LTQyZDYtYmRjZS01Mjc1ZGYyODQxMGIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "dev-bdog-2-ir1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

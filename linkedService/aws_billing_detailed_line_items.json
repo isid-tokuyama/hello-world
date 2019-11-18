@@ -1,0 +1,18 @@
+{
+	"name": "aws_billing_detailed_line_items",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "aws-billing-detailed-line-items\n\nform 技術本部　（事業部系のやばいデータは入っておらず）",
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "\\\\ispace.isid.co.jp\\project05\\開発技術センター\\A.部員\\Z.削除予定\\Azure連携調査\\aws-zip",
+			"userId": "snet\\li2053",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI5M2QzMjczMy02YzlkLTQ1NjAtODVhZC1lMjUyN2U1M2M5ODkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "dev-bdog-2-ir1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

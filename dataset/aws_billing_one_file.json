@@ -1,0 +1,146 @@
+{
+	"name": "aws_billing_one_file",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "aws_billing_detailed_line_items",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": "536656671675-aws-billing-detailed-line-items-with-resources-and-tags-2015-04.csv.zip"
+			},
+			"columnDelimiter": ",",
+			"compressionCodec": "ZipDeflate",
+			"compressionLevel": "Optimal",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "InvoiceID",
+				"type": "String"
+			},
+			{
+				"name": "PayerAccountId",
+				"type": "String"
+			},
+			{
+				"name": "LinkedAccountId",
+				"type": "String"
+			},
+			{
+				"name": "RecordType",
+				"type": "String"
+			},
+			{
+				"name": "RecordId",
+				"type": "String"
+			},
+			{
+				"name": "ProductName",
+				"type": "String"
+			},
+			{
+				"name": "RateId",
+				"type": "String"
+			},
+			{
+				"name": "SubscriptionId",
+				"type": "String"
+			},
+			{
+				"name": "PricingPlanId",
+				"type": "String"
+			},
+			{
+				"name": "UsageType",
+				"type": "String"
+			},
+			{
+				"name": "Operation",
+				"type": "String"
+			},
+			{
+				"name": "AvailabilityZone",
+				"type": "String"
+			},
+			{
+				"name": "ReservedInstance",
+				"type": "String"
+			},
+			{
+				"name": "ItemDescription",
+				"type": "String"
+			},
+			{
+				"name": "UsageStartDate",
+				"type": "String"
+			},
+			{
+				"name": "UsageEndDate",
+				"type": "String"
+			},
+			{
+				"name": "UsageQuantity",
+				"type": "String"
+			},
+			{
+				"name": "BlendedRate",
+				"type": "String"
+			},
+			{
+				"name": "BlendedCost",
+				"type": "String"
+			},
+			{
+				"name": "UnBlendedRate",
+				"type": "String"
+			},
+			{
+				"name": "UnBlendedCost",
+				"type": "String"
+			},
+			{
+				"name": "ResourceId",
+				"type": "String"
+			},
+			{
+				"name": "user:Cost Center",
+				"type": "String"
+			},
+			{
+				"name": "user:Name",
+				"type": "String"
+			},
+			{
+				"name": "user:ServerName",
+				"type": "String"
+			},
+			{
+				"name": "user:ServiceName",
+				"type": "String"
+			},
+			{
+				"name": "user:UserName",
+				"type": "String"
+			},
+			{
+				"name": "user:client",
+				"type": "String"
+			},
+			{
+				"name": "user:powermode",
+				"type": "String"
+			},
+			{
+				"name": "user:serverrole",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
